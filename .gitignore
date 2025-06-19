@@ -1,0 +1,5 @@
+# file model
+/weights/best.pt
+
+# folder virtual environment
+venv/
