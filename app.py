@@ -1,4 +1,4 @@
-# Salin seluruh kode ini untuk menggantikan app.py Anda
+
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
@@ -7,19 +7,19 @@ import numpy as np
 import av
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import os
-import requests # Kita akan gunakan requests untuk download
+import requests 
 
-# --- FUNGSI UNTUK DOWNLOAD MODEL ---
+
 def download_model_if_needed(model_url, model_path):
     """Mengecek jika model ada, jika tidak, unduh dari URL."""
     if not os.path.exists(model_path):
         st.info("Model tidak ditemukan. Mengunduh model... (mungkin perlu beberapa saat)")
-        # Membuat direktori jika belum ada
+        
         os.makedirs(os.path.dirname(model_path), exist_ok=True)
         try:
             with st.spinner("Mengunduh..."):
                 r = requests.get(model_url, stream=True)
-                r.raise_for_status() # Cek jika download berhasil
+                r.raise_for_status() 
                 with open(model_path, 'wb') as f:
                     for chunk in r.iter_content(chunk_size=8192):
                         f.write(chunk)
@@ -28,7 +28,7 @@ def download_model_if_needed(model_url, model_path):
             st.error(f"Gagal mengunduh model: {e}")
             st.stop()
 
-# --- KONFIGURASI HALAMAN ---
+
 st.set_page_config(
     page_title="Detektor Jerawat Real-Time",
     page_icon="✨",
@@ -36,15 +36,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- URL MODEL DARI GITHUB RELEASE ---
-MODEL_URL = "URL_MODEL_ANDA_DI_SINI" # << GANTI DENGAN LINK ANDA
+MODEL_URL = "https://github.com/glendod/acne-detection-project/releases/download/v1.0/best.pt" 
 MODEL_PATH = "weights/best.pt"
 
-# Panggil fungsi download sebelum memuat model
+
 download_model_if_needed(MODEL_URL, MODEL_PATH)
 
-# ... (SISA KODE ANDA DARI SEBELUMNYA TETAP SAMA) ...
-# Salin dan tempel sisa kode app.py Anda yang lama mulai dari baris "st.title(...)" ke bawah
+
 st.title("🔬 Aplikasi Deteksi Jerawat Real-Time")
 st.warning("**Disclaimer:** Ini adalah proyek edukasi dan bukan alat diagnosis medis. Hasilnya mungkin tidak 100% akurat dan tidak dapat menggantikan konsultasi profesional dengan dokter kulit.", icon="⚠️")
 
