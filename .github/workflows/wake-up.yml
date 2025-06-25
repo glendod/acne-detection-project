@@ -1,0 +1,13 @@
+name: Wake Up Streamlit App
+
+on:
+  schedule:
+    # Menjalankan setiap 12 jam (pada menit ke-0 setiap 12 jam)
+    - cron: '0 */12 * * *'
+
+jobs:
+  wake-up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the Streamlit app to keep it awake
+        run: curl -s "https://acne-detection-project-glend.streamlit.app" > /dev/null
