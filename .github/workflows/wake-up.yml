@@ -2,8 +2,8 @@ name: Wake Up Streamlit App
 
 on:
   schedule:
-    # Menjalankan setiap 12 jam (pada menit ke-0 setiap 12 jam)
-    - cron: '0 */12 * * *'
+    # Menjalankan setiap 9 jam (pada menit ke-0 setiap 12 jam)
+    - cron: '0 */9 * * *'
 
 jobs:
   wake-up:
