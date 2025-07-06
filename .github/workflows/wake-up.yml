@@ -2,8 +2,8 @@ name: Wake Up Streamlit App
 
 on:
   schedule:
-    # Menjalankan setiap 1 jam 
-    - cron: '0 */1 * * *'
+    # Menjalankan setiap 5 menit untuk memastikan aplikasi tidak pernah tidur
+    - cron: '*/5 * * * *'
 
 jobs:
   wake-up:
